@@ -1,0 +1,7 @@
+{
+  "name": "olshop",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
