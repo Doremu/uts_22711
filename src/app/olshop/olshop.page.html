@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="olshopMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="gantiMode()">
+        <ion-icon *ngIf="mode == true" name="grid-outline" slot="icon-only">
+        </ion-icon>
+        <ion-icon *ngIf="mode == false" name="list-outline" slot="icon-only">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="">
+  <ion-slides pager #Slider class="slides" (ionSlidesDidLoad)="afterslidesLoad(Slider)" style="height: 30%;">
+    <ion-slide *ngFor="let items of items | slice:0:3">
+      <ion-img [src]="items.imageUrl"></ion-img>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid  *ngIf="mode == true">
+    <ion-row>
+      <ng-container *ngFor="let items of items">
+        <ion-col size="12" size-sm="12" offset-sm="0" size-lg="8" offset-lg="2">
+
+          <ion-list *ngIf="items.stok > 0" [routerLink]="['./', items.id]">
+
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <ion-img [src]="items.imageUrl"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <b>{{items.merk}} {{items.model}}</b><br>
+                Rp {{items.harga}}<br>
+                Tersedia: {{items.stok}}
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="mode == false">
+    <ion-row>
+      <ng-container *ngFor="let items of items">
+      <ion-col size-lg="3" size-sm="6" size="6" *ngIf="items.stok > 0" [routerLink]="['./', items.id]">
+        <ion-card style="margin: 0; padding: 0;">
+          <ion-img [src]="items.imageUrl"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle>{{items.jenis}}</ion-card-subtitle>
+            <ion-card-title>{{items.merk}} {{items.model}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+              Rp {{items.harga}}<br>
+              Tersedia: {{items.stok}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+</ion-content>

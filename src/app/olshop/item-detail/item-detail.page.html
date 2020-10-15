@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/olshop"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{loadedItem.merk}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-card>
+      <ion-col><ion-img [src]="loadedItem.imageUrl"></ion-img></ion-col>
+      <ion-card-content>
+        <b>Tentang Produk</b>
+        <ion-row>
+          <ion-col style="padding-left: 20px;">
+            {{loadedItem.merk}} {{loadedItem.model}}
+            <br>
+            Jenis : {{loadedItem.jenis}}
+            <br>
+            Rp {{loadedItem.harga}}
+            <br>
+            Tersedia : {{loadedItem.stok}}
+            <br>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="padding-left: 20px;">
+            <span *ngIf="loadedItem.ukuran">Ukuran: {{loadedItem.ukuran}}<br></span>
+
+            <span *ngIf="loadedItem.speed">Speed: {{loadedItem.speed}}<br></span>
+
+            <span *ngIf="loadedItem.chipset">Chipset: {{loadedItem.chipset}}<br></span>
+
+            <span *ngIf="loadedItem.merk_processor">Merk Processor: {{loadedItem.merk_processor}}<br></span>
+
+            <span *ngIf="loadedItem.base_clock">Base Clock: {{loadedItem.base_clock}}<br></span>
+
+            <span *ngIf="loadedItem.boost_clock">Boost Clock: {{loadedItem.boost_clock}}<br></span>
+
+            <span *ngIf="loadedItem.jumlah_core">Jumlah Core: {{loadedItem.jumlah_core}}<br></span>
+
+            <span *ngIf="loadedItem.jumlah_thread">Jumlah Thread: {{loadedItem.jumlah_thread}}<br></span>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+</ion-content>
