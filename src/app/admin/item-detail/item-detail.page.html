@@ -1,9 +1,90 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>item-detail</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <form [formGroup]="form">
+      <ion-list>
+        <ion-input type="hidden" formControlName="id" [(ngModel)]="loadedItem.id"></ion-input>
+        <ion-item>
+          <ion-label position="floating">URL Foto</ion-label>
+          <ion-textarea type="text" formControlName="imageUrl" [(ngModel)]="loadedItem.imageUrl"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Jenis</ion-label>
+          <ion-select formControlName="jenis" [(ngModel)]="loadedItem.jenis" disabled>
+            <ion-select-option value="RAM">RAM</ion-select-option>
+            <ion-select-option value="Motherboard">Motherboard</ion-select-option>
+            <ion-select-option value="CPU">CPU</ion-select-option>
+            <ion-select-option value="GPU">GPU</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Merk</ion-label>
+          <ion-input type="text" formControlName="merk" [(ngModel)]="loadedItem.merk"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Model</ion-label>
+          <ion-input type="text" formControlName="model" [(ngModel)]="loadedItem.model"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Harga</ion-label>
+          <ion-input type="number" formControlName="harga" [(ngModel)]="loadedItem.harga"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Stok</ion-label>
+          <ion-input type="number" formControlName="stok" [(ngModel)]="loadedItem.stok"></ion-input>
+        </ion-item>
 
+        <ng-container *ngIf="loadedItem.jenis == 'CPU'">
+          <ion-item>
+            <ion-label position="floating">Base Clock</ion-label>
+            <ion-input type="number" formControlName="base_clock" [(ngModel)]="loadedItem.base_clock"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Boost Clock</ion-label>
+            <ion-input type="number" formControlName="boost_clock" [(ngModel)]="loadedItem.boost_clock"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Jumlah Core</ion-label>
+            <ion-input type="number" formControlName="jumlah_core" [(ngModel)]="loadedItem.jumlah_core"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Jumlah Thread</ion-label>
+            <ion-input type="number" formControlName="jumlah_thread" [(ngModel)]="loadedItem.jumlah_thread"></ion-input>
+          </ion-item>
+        </ng-container>
+
+        <ng-container *ngIf="loadedItem.jenis == 'RAM'">
+          <ion-item>
+            <ion-label position="floating">Speed</ion-label>
+            <ion-input type="number" formControlName="speed" [(ngModel)]="loadedItem.speed"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ukuran</ion-label>
+            <ion-input type="number" formControlName="ukuran" [(ngModel)]="loadedItem.ukuran"></ion-input>
+          </ion-item>
+        </ng-container>
+
+        <ng-container *ngIf="loadedItem.jenis == 'Motherboard'">
+          <ion-item>
+            <ion-label position="floating">Chipset</ion-label>
+            <ion-input type="number" formControlName="chipset" [(ngModel)]="loadedItem.chipset"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Merk Processor</ion-label>
+            <ion-input type="number" formControlName="merk_processor" [(ngModel)]="loadedItem.merk_processor"></ion-input>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+
+      <ion-button expand="block" type="submit" (click)="edit()">Submit</ion-button>
+    </form>
+  </ion-card>
 </ion-content>

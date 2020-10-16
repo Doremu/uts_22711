@@ -118,7 +118,7 @@ export class ItemsService {
     this.items.push({
       id: idBarang,
       imageUrl: imageBarang,
-      jenis: 'GPU',
+      jenis: 'RAM',
       merk: merkBarang,
       model: modelBarang,
       harga: hargaBarang,
@@ -132,7 +132,7 @@ export class ItemsService {
     this.items.push({
       id: idBarang,
       imageUrl: imageBarang,
-      jenis: 'GPU',
+      jenis: 'Motherboard',
       merk: merkBarang,
       model: modelBarang,
       harga: hargaBarang,
@@ -147,7 +147,7 @@ export class ItemsService {
     this.items.push({
       id: idBarang,
       imageUrl: imageBarang,
-      jenis: 'GPU',
+      jenis: 'CPU',
       merk: merkBarang,
       model: modelBarang,
       harga: hargaBarang,
@@ -157,5 +157,75 @@ export class ItemsService {
       jumlah_core: coreBarang,
       jumlah_thread: threadBarang
     });
+  }
+
+  checkIndex() {
+
+  }
+
+  editGpu(idBarang: string, imageBarang: string, merkBarang: string, modelBarang: string, stokBarang: number, hargaBarang: number) {
+    const index = this.items.findIndex((item => item.id === idBarang));
+
+    this.items[index] = {
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'GPU',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang
+    };
+  }
+  editRam(idBarang: string, imageBarang: string, merkBarang: string,
+          modelBarang: string, stokBarang: number, hargaBarang: number, speedBarang: number,
+          ukuranBarang: number) {
+    const index = this.items.findIndex((item => item.id === idBarang));
+
+    this.items[index] = {
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'RAM',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang,
+      speed: speedBarang,
+      ukuran: ukuranBarang
+    };
+  }
+  editMotherboard(idBarang: string, imageBarang: string, merkBarang: string, modelBarang: string,
+                  stokBarang: number, hargaBarang: number, chipsetBarang: string, processorBarang: string) {
+    const index = this.items.findIndex((item => item.id === idBarang));
+
+    this.items[index] = {
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'Motherboard',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang,
+      chipset: chipsetBarang,
+      merk_processor: processorBarang
+    };
+  }
+  editCpu(idBarang: string, imageBarang: string, merkBarang: string,
+          modelBarang: string, stokBarang: number, hargaBarang: number, baseBarang: number,
+          boostBarang: number, coreBarang: number, threadBarang: number) {
+    const index = this.items.findIndex((item => item.id === idBarang));
+
+    this.items[index] = {
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'CPU',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang,
+      base_clock: baseBarang,
+      boost_clock: boostBarang,
+      jumlah_core: coreBarang,
+      jumlah_thread: threadBarang
+    };
   }
 }

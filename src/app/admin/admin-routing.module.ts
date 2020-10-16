@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AdminPage
   },
   {
-    path: 'item-detail',
+    path: ':itemId',
     loadChildren: () => import('./item-detail/item-detail.module').then( m => m.ItemDetailPageModule)
   },
   {

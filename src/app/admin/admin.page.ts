@@ -31,13 +31,13 @@ export class AdminPage implements OnInit {
     this.items = this.itemsService.getAllItem();
   }
   redirectTo(uri: string){
-    this.router.navigateByUrl('/admin/delete', {skipLocationChange: true}).then(() =>
+    this.router.navigateByUrl('olshop', {skipLocationChange: true}).then(() =>
     this.router.navigate([uri]));
   }
   delete(item: Item, slidingItem: IonItemSliding) {
     slidingItem.close();
     this.itemsService.deleteItem(item.id);
-    this.redirectTo('admin');
+    this.redirectTo('/admin');
     console.log(item.id + ' Deleted');
   }
   async presentAlertConfirm(item: Item, slidingItem: IonItemSliding) {
