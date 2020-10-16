@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tambah Item Baru</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="form">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">URL Foto</ion-label>
+          <ion-textarea type="text" formControlName="imageUrl"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Jenis</ion-label>
+          <ion-select formControlName="jenis" [formControl]="check" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="ram">RAM</ion-select-option>
+            <ion-select-option value="motherboard">Motherboard</ion-select-option>
+            <ion-select-option value="cpu">CPU</ion-select-option>
+            <ion-select-option value="gpu">GPU</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Merk</ion-label>
+          <ion-input type="text" formControlName="merk"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Model</ion-label>
+          <ion-input type="text" formControlName="model"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Harga</ion-label>
+          <ion-input type="number" formControlName="harga"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Stok</ion-label>
+          <ion-input type="number" formControlName="stok"></ion-input>
+        </ion-item>
+
+        <ng-container *ngIf="check.value == 'cpu'">
+          <ion-item>
+            <ion-label position="floating">Base Clock</ion-label>
+            <ion-input type="number" formControlName="base_clock"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Boost Clock</ion-label>
+            <ion-input type="number" formControlName="boost_clock"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Jumlah Core</ion-label>
+            <ion-input type="number" formControlName="jumlah_core"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Jumlah Thread</ion-label>
+            <ion-input type="number" formControlName="jumlah_thread"></ion-input>
+          </ion-item>
+        </ng-container>
+
+        <ng-container *ngIf="check.value == 'ram'">
+          <ion-item>
+            <ion-label position="floating">Speed</ion-label>
+            <ion-input type="number" formControlName="speed"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ukuran</ion-label>
+            <ion-input type="number" formControlName="ukuran"></ion-input>
+          </ion-item>
+        </ng-container>
+
+        <ng-container *ngIf="check.value == 'motherboard'">
+          <ion-item>
+            <ion-label position="floating">Chipset</ion-label>
+            <ion-input type="number" formControlName="chipset"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Merk Processor</ion-label>
+            <ion-input type="number" formControlName="merk_processor"></ion-input>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+
+      <ion-button expand="block" type="submit" (click)="add()">Submit</ion-button>
+    </form>
+  </ion-card>
+</ion-content>
