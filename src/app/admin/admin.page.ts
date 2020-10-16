@@ -30,11 +30,33 @@ export class AdminPage implements OnInit {
   ionViewDidEnter() {
     this.items = this.itemsService.getAllItem();
   }
+  redirectTo(uri: string){
+    this.router.navigateByUrl('/admin/delete', {skipLocationChange: true}).then(() =>
+    this.router.navigate([uri]));
+  }
   delete(item: Item, slidingItem: IonItemSliding) {
     slidingItem.close();
     this.itemsService.deleteItem(item.id);
-    this.router.navigate(['/olshop']);
+    this.redirectTo('admin');
     console.log(item.id + ' Deleted');
   }
+  async presentAlertConfirm(item: Item, slidingItem: IonItemSliding) {
+    const alert = await this.alertCtrl.create({
+      header: 'Are you sure?',
+      message: '<strong>Do you really want to delete this item?</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }, {
+          text: 'Delete',
+          handler: () => {
+            this.delete(item, slidingItem);
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+  }
 }

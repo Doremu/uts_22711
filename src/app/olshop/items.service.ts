@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Ram} from './ram.model';
 import {Gpu} from './gpu.model';
 import {Item} from './items.model';
+import {FormGroup, NgForm} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -91,9 +92,70 @@ export class ItemsService {
         return items.id === itemId;
       })};
   }
+  totalItem() {
+    return this.items.length + 1;
+  }
   deleteItem(itemId: string) {
     this.items = this.items.filter(item => {
       return item.id !== itemId;
+    });
+  }
+
+  addGpu(idBarang: string, imageBarang: string, merkBarang: string, modelBarang: string, stokBarang: number, hargaBarang: number){
+    this.items.push({
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'GPU',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang
+    });
+  }
+  addRam(idBarang: string, imageBarang: string, merkBarang: string,
+         modelBarang: string, stokBarang: number, hargaBarang: number, speedBarang: number,
+         ukuranBarang: number){
+    this.items.push({
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'GPU',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang,
+      speed: speedBarang,
+      ukuran: ukuranBarang
+    });
+  }
+  addMotherboard(idBarang: string, imageBarang: string, merkBarang: string, modelBarang: string,
+                 stokBarang: number, hargaBarang: number, chipsetBarang: string, processorBarang: string){
+    this.items.push({
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'GPU',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang,
+      chipset: chipsetBarang,
+      merk_processor: processorBarang
+    });
+  }
+  addCpu(idBarang: string, imageBarang: string, merkBarang: string,
+         modelBarang: string, stokBarang: number, hargaBarang: number, baseBarang: number,
+         boostBarang: number, coreBarang: number, threadBarang: number){
+    this.items.push({
+      id: idBarang,
+      imageUrl: imageBarang,
+      jenis: 'GPU',
+      merk: merkBarang,
+      model: modelBarang,
+      harga: hargaBarang,
+      stok: stokBarang,
+      base_clock: baseBarang,
+      boost_clock: boostBarang,
+      jumlah_core: coreBarang,
+      jumlah_thread: threadBarang
     });
   }
 }
